@@ -11,8 +11,9 @@ on:
   workflow_dispatch:
 
 env:
-  #CONTAINER_REGISTRY: ghcr.io/${{ github.repository_owner }}/
-  CONTAINER_REGISTRY: "zododev/"
+  GH_REGISTRY: ghcr.io/${{ github.repository_owner }}/
+  PUBLISH_GH: true
+  PUBLISH_DOCKER_HUB: true
 
 jobs:
   build-and-push-image:
@@ -24,9 +25,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Log in to registry
+      - name: Log in to registry GH
         # This is where you will update the PAT to GITHUB_TOKEN
-        #run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login $CONTAINER_REGISTRY -u ${{ github.actor }} --password-stdin
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login $CONTAINER_REGISTRY -u ${{ github.actor }} --password-stdin
+      - name: Log in to registry Docker HUB
+        # This is where you will update the PAT to GITHUB_TOKEN
         run: echo "${{ secrets.DOCKER_HUB_TOKEN }}" | docker login -u ${{ secrets.DOCKER_HUB_USER }} --password-stdin
 
       - name: Build and push image
