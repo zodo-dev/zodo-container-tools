@@ -5,7 +5,7 @@ FROM node:${NODE_VERSION}-slim
 
 RUN mkdir -p /node_modules/bin && chown node:node -R /node_modules
 
-RUN apt update && apt install python build-essential curl -y && apt clean --dry-run
+RUN apt update && apt install python build-essential curl git -y && apt clean --dry-run
 
 ENV NPM_PACKAGES=/node_modules
 
