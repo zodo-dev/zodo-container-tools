@@ -9,7 +9,7 @@ RUN apt update && apt install python build-essential curl git -y && apt clean --
 
 ENV NPM_PACKAGES=/node_modules
 
-ENV PATH=$NPM_PACKAGES/bin:$HOME/.meteor:$PATH
+ENV PATH=$NPM_PACKAGES/bin:$PATH
 
 USER node
 
@@ -17,4 +17,10 @@ RUN npm config set prefix $NPM_PACKAGES
 
 RUN npm i -g meteor
 
-RUN ~/.meteor/meteor npm i -g yarn
+USER root
+
+RUN ln -s /home/node/.meteor/meteor /usr/local/bin/
+
+USER node
+
+RUN meteor npm i -g yarn
