@@ -1,6 +1,6 @@
-ARG METEOR_VERSION=2.6.1
-
 FROM ubuntu:20.04
+
+ARG METEOR_VERSION
 
 RUN apt update && apt install python build-essential curl git sudo nano -y && apt clean --dry-run
 

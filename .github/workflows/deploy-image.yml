@@ -19,7 +19,7 @@ env:
   GH_REGISTRY: ghcr.io/${{ github.repository_owner }}/
   PUBLISH_GH: true
   PUBLISH_DOCKER_HUB: true
-  METEOR_RELEASE: ${{ github.event.inputs.meteor_version }}
+  METEOR_VERSION: ${{ github.event.inputs.meteor_version }}
 
 jobs:
   build-and-push-image:
