@@ -30,9 +30,4 @@ if [ "${CREATE_GH_IMAGE}" == "true" ]; then
     docker tag "${IMAGE_NAME_TAG}" "${GH_REGISTRY}${IMAGE_NAME_TAG}"
     docker push "${GH_REGISTRY}${IMAGE_NAME_TAG}"
   fi
-  if [ "${PUBLISH_DOCKER_HUB}" == "true" ]; then
-    echo Publishing on Docker Hub
-    docker tag "${IMAGE_NAME_TAG}" "zododev/${IMAGE_NAME_TAG}"
-    docker push "zododev/${IMAGE_NAME_TAG}"
-  fi
 fi
