@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-export NODE_VERSION=16
-export METEOR_VERSION=2.6.1
+export METEOR_VERSION=${METEOR_VERSION:-2.6.1}
 export CONTAINER_REGISTRY=${CONTAINER_REGISTRY:-""}
 export IMAGE_NAME=meteor
 export IMAGE_TAG=${METEOR_VERSION}
@@ -9,7 +8,7 @@ export PUBLISH_GH=${PUBLISH_GH:-false}
 export PUBLISH_DOCKER_HUB=${PUBLISH_DOCKER_HUB:-false}
 
 echo "IMAGE_NAME_TAG: ${IMAGE_NAME_TAG}"
-docker build . -t "${IMAGE_NAME_TAG}"
+docker build . -t "${IMAGE_NAME_TAG}" -f ubuntu.dockerfile
 if [ "${PUBLISH_GH}" == "true" ]; then
   echo Publishing on Github
   docker tag "${IMAGE_NAME_TAG}" "${GH_REGISTRY}${IMAGE_NAME_TAG}"

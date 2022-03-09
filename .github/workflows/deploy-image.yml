@@ -9,11 +9,17 @@ on:
   #  push:
   #    branches: [ 'release' ]
   workflow_dispatch:
-
+    inputs:
+      meteor_version:
+        description: Meteor Release
+        default: 2.6.1
+        required: false
+        type: string
 env:
   GH_REGISTRY: ghcr.io/${{ github.repository_owner }}/
   PUBLISH_GH: true
   PUBLISH_DOCKER_HUB: true
+  METEOR_RELEASE: ${{ github.event.inputs.meteor_version }}
 
 jobs:
   build-and-push-image:
